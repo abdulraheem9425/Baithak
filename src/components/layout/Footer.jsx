@@ -10,51 +10,61 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white pt-12 pb-6 px-6 md:px-16 mt-16">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 text-center sm:text-left">
+    <footer className="bg-black text-white py-3 px-6 sm:px-16 lg:px-24 select-none">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 text-center sm:text-left">
         {/* Logo & Description */}
         <div className="flex flex-col items-center sm:items-start">
-          <Link to="/" className="flex items-center mb-3">
+          <Link to="/" aria-label="Baithak Home" className="flex items-center mb-4">
             <img
               src="/assets/images/logoo.png"
               alt="Baithak Logo"
-              className="h-14 w-auto md:h-16 w-[150px] mr-2 object-contain"
+              className="h-16 w-auto object-contain"
             />
           </Link>
-          <p className="text-sm text-gray-400 italic mb-2">Taste of Tradition</p>
-          <p className="text-sm text-gray-400 leading-relaxed max-w-xs">
-            Premium dining, event catering & franchise opportunities. Discover rich,
-            authentic flavors.
+          <p className="text-sm italic text-gray-400 mb-3 tracking-wide">
+            Taste of Tradition
           </p>
-          <div className="flex space-x-4 mt-6 text-lg">
+          <p className="text-gray-400 max-w-xs leading-relaxed font-light">
+            Premium dining, event catering & franchise opportunities. Discover rich,
+            authentic flavors crafted with love.
+          </p>
+          {/* <div className="flex space-x-6 mt-8 text-xl">
             <a
               href="#"
               aria-label="Facebook"
-              className="text-gray-400 hover:text-yellow-400 transition duration-300"
+              className="text-gray-400 hover:text-yellow-400 transition-colors duration-300"
+              rel="noopener noreferrer"
+              target="_blank"
             >
               <FaFacebookF />
             </a>
             <a
               href="#"
               aria-label="Instagram"
-              className="text-gray-400 hover:text-yellow-400 transition duration-300"
+              className="text-gray-400 hover:text-yellow-400 transition-colors duration-300"
+              rel="noopener noreferrer"
+              target="_blank"
             >
               <FaInstagram />
             </a>
             <a
               href="#"
               aria-label="YouTube"
-              className="text-gray-400 hover:text-yellow-400 transition duration-300"
+              className="text-gray-400 hover:text-yellow-400 transition-colors duration-300"
+              rel="noopener noreferrer"
+              target="_blank"
             >
               <FaYoutube />
             </a>
-          </div>
+          </div> */}
         </div>
 
         {/* Quick Links */}
-        <div>
-          <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
-          <ul className="space-y-6 text-sm text-gray-300">
+        <nav className=" lg:ml-16" aria-label="Quick links">
+          <h3 className="text-lg font-semibold mb-5  text-yellow-400 tracking-wide">
+            Quick Links
+          </h3>
+          <ul className="space-y-5 text-sm text-gray-300">
             <li>
               <Link
                 to="/about"
@@ -73,7 +83,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                to="/Services"
+                to="/services"
                 className="hover:text-yellow-400 hover:underline transition duration-300"
               >
                 Services
@@ -88,12 +98,14 @@ const Footer = () => {
               </Link>
             </li>
           </ul>
-        </div>
+        </nav>
 
         {/* Explore */}
-        <div>
-          <h3 className="text-lg font-semibold text-white mb-4">Explore</h3>
-          <ul className="space-y-6 text-sm text-gray-300">
+        <nav aria-label="Explore links">
+          <h3 className="text-lg font-semibold mb-5 text-yellow-400 tracking-wide">
+            Explore
+          </h3>
+          <ul className="space-y-5 text-sm text-gray-300">
             <li>
               <Link
                 to="/faq"
@@ -107,7 +119,7 @@ const Footer = () => {
                 to="/terms-condition"
                 className="hover:text-yellow-400 hover:underline transition duration-300"
               >
-                Terms & Condition
+                Terms &amp; Conditions
               </Link>
             </li>
             <li>
@@ -115,45 +127,76 @@ const Footer = () => {
                 to="/privacy-policy"
                 className="hover:text-yellow-400 hover:underline transition duration-300"
               >
-                Privacy & Policy
+                Privacy Policy
               </Link>
             </li>
           </ul>
-        </div>
+        </nav>
 
         {/* Contact Info */}
-        <div className="flex flex-col items-center sm:items-start">
-          <h3 className="text-lg font-semibold text-white mb-4">Contact</h3>
-          <ul className="space-y-4 text-sm text-gray-400">
-            <li className="flex items-center justify-center sm:justify-start space-x-2">
-              <FaPhoneAlt className="text-yellow-400" />
-              <a
-                href="tel:+447448653820"
-                className="hover:text-yellow-400 transition duration-300"
-              >
-                +44 7448 653820
-              </a>
-            </li>
-            <li className="flex items-center justify-center sm:justify-start space-x-2">
-              <FaEnvelope className="text-yellow-400" />
-              <a
-                href="mailto:info@baithak.com"
-                className="hover:text-yellow-400 transition duration-300"
-              >
-                info@baithak.com
-              </a>
-            </li>
-            <li className="text-center sm:text-left">722 High Road, Leytonstone</li>
-          </ul>
-        </div>
+        <address className="not-italic flex flex-col items-center sm:items-start space-y-5 text-gray-400 text-sm">
+          <h3 className="text-lg font-semibold text-yellow-400 tracking-wide">
+            Contact
+          </h3>
+          <a
+            href="tel:+447448653820"
+            className="flex items-center space-x-3 hover:text-yellow-400 transition duration-300"
+            aria-label="Call Baithak"
+          >
+            <FaPhoneAlt />
+            <span>+44 7448 653820</span>
+          </a>
+          <a
+            href="mailto:info@baithak.com"
+            className="flex items-center space-x-3 hover:text-yellow-400 transition duration-300"
+            aria-label="Email Baithak"
+          >
+            <FaEnvelope />
+            <span>info@baithak.com</span>
+          </a>
+          <p className="text-center sm:text-left max-w-xs">
+            722 High Road, Leytonstone, London, UK
+          </p>
+                    <div className="flex space-x-6 mt-8 text-xl">
+            <a
+              href="#"
+              aria-label="Facebook"
+              className="text-gray-400 hover:text-yellow-400 transition-colors duration-300"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <FaFacebookF />
+            </a>
+            <a
+              href="#"
+              aria-label="Instagram"
+              className="text-gray-400 hover:text-yellow-400 transition-colors duration-300"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <FaInstagram />
+            </a>
+            <a
+              href="#"
+              aria-label="YouTube"
+              className="text-gray-400 hover:text-yellow-400 transition-colors duration-300"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <FaYoutube />
+            </a>
+          </div>  
+
+        </address>
+        
       </div>
 
-      <hr className="my-5 border-gray-700" />
+      <hr className="border-gray-700 my-8" />
 
       {/* Copyright */}
-      <div className="text-center text-xs md:text-sm text-gray-500">
+      <div className="text-center text-xs sm:text-sm text-gray-500 select-text">
         © {new Date().getFullYear()}{" "}
-        <span className="text-white font-semibold">Baithak</span> — All rights reserved.
+        <span className="font-semibold text-white">Baithak</span> — All rights reserved.
       </div>
     </footer>
   );

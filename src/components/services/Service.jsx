@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const Services = () => {
   const services = [
@@ -13,12 +14,13 @@ const Services = () => {
           strokeWidth="2"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
         >
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
             d="M4 6h16M4 10h16M6 14h.01M10 14h.01M14 14h.01M18 14h.01"
-          ></path>
+          />
         </svg>
       ),
     },
@@ -33,12 +35,13 @@ const Services = () => {
           strokeWidth="2"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
         >
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
             d="M3 10h2l3 9h8l3-9h2"
-          ></path>
+          />
           <circle cx="7" cy="21" r="1"></circle>
           <circle cx="17" cy="21" r="1"></circle>
         </svg>
@@ -55,36 +58,62 @@ const Services = () => {
           strokeWidth="2"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h18v13H3z"></path>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M3 16h18l-3 5H6l-3-5z"></path>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h18v13H3z" />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3 16h18l-3 5H6l-3-5z" />
         </svg>
       ),
     },
   ];
 
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.2,
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    }),
+  };
+
   return (
-    <section className="py-32 bg-gray-900 text-white px-6 sm:px-12 lg:px-24 ">
-      <h2 className="text-4xl font-extrabold text-yellow-500 text-center mb-14 tracking-wide">
-        Our Services
-      </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 max-w-6xl mx-auto">
-        {services.map(({ title, description, icon }) => (
-          <div
+    <section className="py-32 bg-gradient-to-b from-black via-black-900 to-black text-white px-6 sm:px-12 lg:px-24">
+      <motion.h2
+        className="text-4xl sm:text-5xl font-extrabold text-center mb-20 tracking-wide"
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        viewport={{ once: true }}
+      >
+        Our <span className="text-yellow-500">Services</span>
+      </motion.h2>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-14 max-w-6xl mx-auto">
+        {services.map(({ title, description, icon }, index) => (
+          <motion.div
             key={title}
-            className="bg-gray-800 rounded-xl p-10 text-center shadow-xl transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl cursor-pointer"
+            className="relative text-center p-10 rounded-2xl border border-yellow-500/20 bg-white/5 backdrop-blur-md shadow-lg hover:shadow-yellow-500/30 hover:scale-105 transition-all duration-300 group"
+            custom={index}
+            initial="hidden"
+            whileInView="visible"
+            variants={cardVariants}
+            viewport={{ once: true }}
           >
             <div className="flex justify-center">{icon}</div>
-            <h3 className="text-2xl font-semibold mb-4 relative inline-block group">
+            <h3 className="text-2xl font-semibold text-yellow-400 mb-3 relative inline-block">
               {title}
-              <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-1 bg-yellow-500 absolute bottom-0 left-0"></span>
+              <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-1 bg-yellow-400 absolute bottom-0 left-0 rounded-full"></span>
             </h3>
-            <p className="text-gray-300 text-lg leading-relaxed">{description}</p>
-          </div>
+            <p className="text-gray-300 text-base leading-relaxed">{description}</p>
+          </motion.div>
         ))}
       </div>
 
-      {/* Custom animation for bounce-slow */}
+      {/* Custom bounce animation */}
       <style>
         {`
           @keyframes bounce-slow {
