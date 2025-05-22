@@ -7,7 +7,11 @@ const ScrollToTop = () => {
   useEffect(() => {
     window.scrollTo({
       top: 0,
+<<<<<<< HEAD
       behavior: "smooth", 
+=======
+      behavior: "smooth", // ya "auto" for instant scroll
+>>>>>>> f288242 (Added)
     });
   }, [pathname]);
 

@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+<<<<<<< HEAD
 import Layout from "./Components/layout/Layout.jsx";
+=======
+import Layout from "./Components/layout/Layout";
+>>>>>>> f288242 (Added)
 import HomePage from "./components/pages/HomePage";
 import ServicesPage from "./components/pages/ServicesPage";
 import AboutPage from "./components/pages/AboutPage";
@@ -12,10 +16,17 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+<<<<<<< HEAD
     
     const timer = setTimeout(() => {
       setLoading(false);
     }, 2000); 
+=======
+    // Simulate loading time, e.g., fetching data
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000); // 2 seconds
+>>>>>>> f288242 (Added)
     return () => clearTimeout(timer);
   }, []);
 
