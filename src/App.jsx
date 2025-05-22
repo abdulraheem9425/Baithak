@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./components/layout/Layout";
+import Layout from "./Components/layout/Layout.jsx";
 import HomePage from "./components/pages/HomePage";
 import ServicesPage from "./components/pages/ServicesPage";
 import AboutPage from "./components/pages/AboutPage";
