@@ -154,9 +154,15 @@ const Footer = () => {
             <FaEnvelope />
             <span>info@baithak.com</span>
           </a>
-          <p className="text-center sm:text-left max-w-xs">
-            722 High Road, Leytonstone, London, UK
-          </p>
+          <a
+  href="https://maps.google.com/?q=722+High+Road,+Leytonstone,+London,+UK"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="text-gray-300 hover:text-yellow-500 transition"
+>
+  722 High Road, Leytonstone, London, UK
+</a>
+
                     <div className="flex space-x-6 mt-8 text-xl">
             <a
               href="#"

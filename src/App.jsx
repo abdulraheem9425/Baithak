@@ -7,12 +7,17 @@ import AboutPage from "./components/pages/AboutPage";
 import ContactPage from "./components/pages/ContactPage";
 import Loader from "./components/common/Loader";
 import ScrollToTop from "./components/common/ScrollToTop";
+import AntiCopy from './components/common/AntiCopy'
+import TermsCondition from "./components/terms/Terms-Condition";
+import PrivacyPolicy from "./components/privacy-policy/Privacy-Policy";  
+import Faq from './components/faq/Faq';
+
+
 
 function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate loading time, e.g., fetching data
     const timer = setTimeout(() => {
       setLoading(false);
     }, 2000); // 2 seconds
@@ -24,12 +29,18 @@ function App() {
   return (
     <BrowserRouter>
     <ScrollToTop />
+    <AntiCopy/>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="services" element={<ServicesPage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="contact" element={<ContactPage />} />
+         <Route path="terms-condition" element={<TermsCondition/>} />
+          <Route path="*" element={<h1>404 Not Found</h1>} />
+          <Route path="privacy-policy" element={<PrivacyPolicy/>} />
+          <Route path="faq" element={<Faq/>}/>
+
         </Route>
       </Routes>
     </BrowserRouter>
