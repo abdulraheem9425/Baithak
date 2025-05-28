@@ -13,7 +13,7 @@ const HomeHero = () => {
       {/* Background Video */}
       <video
         className="absolute top-0 left-0 w-full h-full object-cover z-2"
-        src="/assets/images/Baithak .mp4" // 👈 Replace with your video path
+        src="/assets/images/Baithak.mp4" 
         autoPlay
         loop
         muted
