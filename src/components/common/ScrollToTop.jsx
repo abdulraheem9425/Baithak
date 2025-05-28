@@ -8,6 +8,7 @@ const ScrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth", 
+      // ya "auto" for instant scroll
     });
   }, [pathname]);
 

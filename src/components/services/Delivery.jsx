@@ -37,9 +37,18 @@ const DeliveryPartners = () => {
   };
 
   return (
-    <section className="py-24 bg-gradient-to-b from-black via-black to-black bg-fixed text-white px-6 sm:px-12 lg:px-24">
+    <section
+      className="relative py-24 px-6 sm:px-12 lg:px-24 text-white bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage: "url('/assets/images/deliveryy.jpg')", 
+      }}
+    >
+      {/* Overlay for readability */}
+      <div className="absolute inset-0 bg-black/50 z-0" />
+
+      {/* Heading */}
       <motion.h2
-        className="text-4xl sm:text-5xl font-extrabold text-yellow-500 text-center mb-16 tracking-wider"
+        className="relative z-10 text-4xl sm:text-5xl font-extrabold text-yellow-500 text-center mb-16 tracking-wider"
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -48,7 +57,8 @@ const DeliveryPartners = () => {
         Available On
       </motion.h2>
 
-      <div className="flex flex-wrap justify-center gap-14 max-w-6xl mx-auto">
+      {/* Cards */}
+      <div className="relative z-10 flex flex-wrap justify-center gap-14 max-w-6xl mx-auto">
         {partners.map(({ name, url, logo, description }, index) => (
           <motion.a
             key={name}
@@ -60,7 +70,7 @@ const DeliveryPartners = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="relative flex flex-col items-center text-center backdrop-blur-md bg-white/5 border border-yellow-500/20 rounded-2xl p-8 sm:p-10 w-72 shadow-lg hover:shadow-yellow-500/40 transition-all duration-300 hover:scale-105 group"
+            className="relative flex flex-col items-center text-center backdrop-blur-md bg-white/10 border border-yellow-500/20 rounded-2xl p-8 sm:p-10 w-72 shadow-lg hover:shadow-yellow-500/40 transition-all duration-300 hover:scale-105 group"
           >
             <div className="relative mb-4">
               <img
@@ -73,7 +83,7 @@ const DeliveryPartners = () => {
             <span className="text-yellow-400 font-semibold text-xl tracking-wide mb-2">
               {name}
             </span>
-            <p className="text-gray-300 text-sm leading-relaxed">
+            <p className="text-gray-200 text-sm leading-relaxed">
               {description}
             </p>
           </motion.a>

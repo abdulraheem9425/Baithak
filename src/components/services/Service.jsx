@@ -81,9 +81,17 @@ const Services = () => {
   };
 
   return (
-    <section className="py-32 bg-gradient-to-b from-black via-black-900 to-black text-white px-6 sm:px-12 lg:px-24">
+    <section
+      className="relative py-32 px-6 sm:px-12 lg:px-24 text-white bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage: "url('/assets/images/services.jpg')", // Replace with your actual image path
+      }}
+    >
+      {/* Overlay for readability */}
+      <div className="absolute inset-0 bg-black/50 z-0" />
+
       <motion.h2
-        className="text-4xl sm:text-5xl font-extrabold text-center mb-20 tracking-wide"
+        className="relative z-10 text-4xl sm:text-5xl font-extrabold text-center mb-20 tracking-wide"
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
@@ -92,11 +100,11 @@ const Services = () => {
         Our <span className="text-yellow-500">Services</span>
       </motion.h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-14 max-w-6xl mx-auto">
+      <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-14 max-w-6xl mx-auto">
         {services.map(({ title, description, icon }, index) => (
           <motion.div
             key={title}
-            className="relative text-center p-10 rounded-2xl border border-yellow-500/20 bg-white/5 backdrop-blur-md shadow-lg hover:shadow-yellow-500/30 hover:scale-105 transition-all duration-300 group"
+            className="relative text-center p-10 rounded-2xl border border-yellow-500/20 bg-white/10 backdrop-blur-lg shadow-lg hover:shadow-yellow-500/30 hover:scale-105 transition-all duration-300 group"
             custom={index}
             initial="hidden"
             whileInView="visible"
@@ -108,7 +116,7 @@ const Services = () => {
               {title}
               <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-1 bg-yellow-400 absolute bottom-0 left-0 rounded-full"></span>
             </h3>
-            <p className="text-gray-300 text-base leading-relaxed">{description}</p>
+            <p className="text-gray-200 text-base leading-relaxed">{description}</p>
           </motion.div>
         ))}
       </div>
