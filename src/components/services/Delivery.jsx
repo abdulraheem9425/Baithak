@@ -18,7 +18,7 @@ const DeliveryPartners = () => {
     {
       name: "Deliveroo",
       url: "https://deliveroo.co.uk/",
-      logo: "/assets/images/delivery.png",
+      logo: "/assets/images/delivery.webp",
       description: "Fresh food delivered fast — only on Deliveroo.",
     },
   ];
@@ -40,7 +40,7 @@ const DeliveryPartners = () => {
     <section
       className="relative py-24 px-6 sm:px-12 lg:px-24 text-white bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: "url('/assets/images/deliveryy.jpg')", 
+        backgroundImage: "url('/assets/images/deliveryy.webp')", 
       }}
     >
       {/* Overlay for readability */}

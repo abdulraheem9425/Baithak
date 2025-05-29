@@ -4,7 +4,7 @@ const FullWidthImage = () => {
   return (
     <div className="w-full">
       <img
-        src="/assets/images/homethird.jpg" // Replace with your actual image path
+        src="/assets/images/homethird.webp" // Replace with your actual image path
         alt="Baithak Raan"
         className="w-full h-[600px] object-cover  "
       />

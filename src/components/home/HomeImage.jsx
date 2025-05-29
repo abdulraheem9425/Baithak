@@ -8,7 +8,7 @@ const BaithakHero = () => {
       {/* Left Side - Image */}
       <div className="w-full md:w-1/2 h-[600px] md:h-full">
         <img
-          src="/assets/images/home.jpg"
+          src="/assets/images/home.webp"
           alt="Baithak Food"
           className="w-full h-full object-cover"
         />
@@ -17,9 +17,9 @@ const BaithakHero = () => {
       {/* Right Side - Text */}
       <div className="w-full md:w-1/2 relative h-[600px] bg-red-600 md:h-full">
         <img
-          src="/assets/images/homesecond.jpg"
+          src="/assets/images/homesecond.webp"
           alt="Baithak Background"
-          className="w-full h-full object-cover brightness-50 absolute inset-0 z-2"
+          className="w-full h-full bg-fixed object-cover brightness-50 absolute inset-0 z-2"
         />
         <div className="relative z-10 flex flex-col justify-center items-center text-center px-6 py-10 md:py-0 md:px-16 text-white h-full">
           <h2 className="text-yellow-300 text-2xl sm:text-3xl md:text-4xl font-semibold mb-4">
