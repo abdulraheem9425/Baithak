@@ -8,13 +8,12 @@ const Services = () => {
       description: "Enjoy a cozy atmosphere with premium service inside our restaurant.",
       icon: (
         <svg
-          className="w-14 h-14 text-yellow-500 mb-5 animate-bounce-slow"
+          className="w-14 h-14 text-yellow-400 mb-6 animate-bounce-slow"
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
         >
           <path
             strokeLinecap="round"
@@ -29,21 +28,16 @@ const Services = () => {
       description: "Order your favorite meals and pick them up at your convenience.",
       icon: (
         <svg
-          className="w-14 h-14 text-yellow-500 mb-5 animate-bounce-slow"
+          className="w-14 h-14 text-yellow-400 mb-6 animate-bounce-slow"
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M3 10h2l3 9h8l3-9h2"
-          />
-          <circle cx="7" cy="21" r="1"></circle>
-          <circle cx="17" cy="21" r="1"></circle>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h2l3 9h8l3-9h2" />
+          <circle cx="7" cy="21" r="1" />
+          <circle cx="17" cy="21" r="1" />
         </svg>
       ),
     },
@@ -52,13 +46,12 @@ const Services = () => {
       description: "Get your order delivered straight to your doorstep, fast and fresh.",
       icon: (
         <svg
-          className="w-14 h-14 text-yellow-500 mb-5 animate-bounce-slow"
+          className="w-14 h-14 text-yellow-400 mb-6 animate-bounce-slow"
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
         >
           <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h18v13H3z" />
           <path strokeLinecap="round" strokeLinejoin="round" d="M3 16h18l-3 5H6l-3-5z" />
@@ -82,29 +75,26 @@ const Services = () => {
 
   return (
     <section
-      className="relative py-32 px-6 sm:px-12 lg:px-24 text-white bg-cover bg-center bg-no-repeat"
-      style={{
-        backgroundImage: "url('/assets/images/services.jpg')", // Replace with your actual image path
-      }}
+      className="relative py-24 sm:py-32 px-4 sm:px-8 lg:px-24 text-white bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: "url('/assets/images/services.jpg')" }}
     >
-      {/* Overlay for readability */}
-      <div className="absolute inset-0 bg-black/50 z-0" />
+      <div className="absolute inset-0 bg-black/60 z-0" />
 
       <motion.h2
         className="relative z-10 text-4xl sm:text-5xl font-extrabold text-center mb-20 tracking-wide"
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
+        transition={{ duration: 0.4 }}
         viewport={{ once: true }}
       >
         Our <span className="text-yellow-500">Services</span>
       </motion.h2>
 
-      <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-14 max-w-6xl mx-auto">
+      <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
         {services.map(({ title, description, icon }, index) => (
           <motion.div
             key={title}
-            className="relative text-center p-10 rounded-2xl border border-yellow-500/20 bg-white/10 backdrop-blur-lg shadow-lg hover:shadow-yellow-500/30 hover:scale-105 transition-all duration-300 group"
+            className="group text-center p-10 bg-white/10 backdrop-blur-md border border-white/10 rounded-3xl shadow-xl transition-all duration-300 hover:scale-[1.05] hover:shadow-yellow-500/30"
             custom={index}
             initial="hidden"
             whileInView="visible"
@@ -112,16 +102,15 @@ const Services = () => {
             viewport={{ once: true }}
           >
             <div className="flex justify-center">{icon}</div>
-            <h3 className="text-2xl font-semibold text-yellow-400 mb-3 relative inline-block">
+            <h3 className="text-2xl font-semibold text-yellow-400 mb-2 relative inline-block">
               {title}
-              <span className="block max-w-0 group-hover:max-w-full transition-all duration-500 h-1 bg-yellow-400 absolute bottom-0 left-0 rounded-full"></span>
+              <span className="block h-1 max-w-0 group-hover:max-w-full bg-yellow-400 transition-all duration-500 absolute bottom-0 left-0 rounded-full"></span>
             </h3>
-            <p className="text-gray-200 text-base leading-relaxed">{description}</p>
+            <p className="text-gray-200 mt-3 leading-relaxed">{description}</p>
           </motion.div>
         ))}
       </div>
 
-      {/* Custom bounce animation */}
       <style>
         {`
           @keyframes bounce-slow {

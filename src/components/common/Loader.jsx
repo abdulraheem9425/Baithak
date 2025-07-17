@@ -10,14 +10,19 @@ const Loader = () => {
         animate={{ opacity: 1, scale: [1, 1.15, 1] }}
         transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
       >
-        <div className="text-yellow-500 text-6xl font-extrabold tracking-wider mb-4">
+        {/* Logo or Icon */}
+        <div className="text-yellow-500 text-6xl md:text-7xl font-extrabold tracking-wider mb-4">
           🍽️
         </div>
-        <h1 className="text-yellow-400 text-3xl font-bold tracking-widest mb-1">
-          Baithak
+
+        {/* Brand Name */}
+        <h1 className="text-yellow-400 text-3xl md:text-4xl font-bold tracking-widest mb-1 uppercase drop-shadow-md">
+          Baithak 804
         </h1>
-        <h2 className="text-white text-xl sm:text-2xl font-semibold tracking-widest">
-          Loading<span className="animate-pulse">...</span>
+
+        {/* Loading Text */}
+        <h2 className="text-white text-xl sm:text-2xl font-semibold tracking-widest animate-pulse">
+          Loading<span className="text-yellow-500">...</span>
         </h2>
       </motion.div>
     </div>

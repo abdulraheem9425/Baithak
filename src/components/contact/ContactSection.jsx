@@ -1,134 +1,193 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin } from "lucide-react";
 
+const contactInfo = [
+  {
+    Icon: Mail,
+    title: "Email",
+    content: "info@baithak.com",
+    href: "mailto:info@baithak.com",
+  },
+  {
+    Icon: Phone,
+    title: "Phone",
+    content: "020 8711 1740",
+    href: "tel:02087111740",
+  },
+  {
+    Icon: MapPin,
+    title: "Address",
+    content: "722 High Road, Leytonstone, London, UK",
+    href: "https://maps.google.com/?q=722+High+Road,+Leytonstone,+London,+UK",
+  },
+];
+
+// Animations
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15 } },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
+const formVariants = {
+  hidden: { opacity: 0, x: 20 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
 const ContactSection = () => {
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const name = formData.get("name");
+    const email = formData.get("email");
+    const message = formData.get("message");
+
+    try {
+      const res = await fetch("http://localhost:5000/submit-form", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setSubmitted(true);
+        e.target.reset(); // clear form
+        setTimeout(() => setSubmitted(false), 4000);
+      } else {
+        alert("Failed to submit the form.");
+      }
+    } catch (err) {
+      console.error("Error submitting form:", err);
+      alert("Something went wrong. Please try again.");
+    }
+  };
+
   return (
-    <section
+    <main
       id="contact"
-      className="py-28 bg-gradient-to-b from-black via-black to-black text-white px-6 sm:px-12 lg:px-24"
+      className="py-36 bg-gradient-to-b from-black via-zinc-900 to-black text-white px-4 sm:px-8 md:px-12 lg:px-24 font-poppins"
     >
       <motion.h2
-        className="text-4xl sm:text-5xl font-extrabold text-center text-yellow-500 mb-20 tracking-wide"
+        className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center text-yellow-400 mb-16 sm:mb-20 tracking-tight sm:tracking-wide drop-shadow-lg"
         initial={{ opacity: 0, y: -15 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: "easeOut" }}
+        transition={{ duration: 1 }}
         viewport={{ once: true }}
       >
         Get In <span className="text-red-500">Touch</span>
       </motion.h2>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 max-w-6xl mx-auto">
         {/* Contact Info */}
         <motion.div
           className="space-y-10"
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-          viewport={{ once: true }}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.4 }}
         >
-          <div className="flex items-start gap-4">
-            <Mail className="text-yellow-500 w-6 h-6 mt-1" />
-            <div>
-              <h3 className="text-2xl font-semibold mb-1">Email</h3>
-              <a
-                href="mailto:info@baithak.com"
-                className="text-gray-300 hover:text-yellow-500 transition"
-              >
-                           info@baithak.com              </a>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4">
-            <Phone className="text-yellow-500 w-6 h-6 mt-1" />
-            <div>
-              <h3 className="text-2xl font-semibold mb-1">Phone</h3>
-              <a
-                href="tel:+44 7448 653820"
-                className="text-gray-300 hover:text-yellow-500 transition"
-              >
-            +44 7448 653820
-              </a>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4">
-            <MapPin className="text-yellow-500 w-6 h-6 mt-1" />
-            <div>
-              <h3 className="text-2xl font-semibold mb-1">Address</h3>
-          <a
-  href="https://maps.google.com/?q=722+High+Road,+Leytonstone,+London,+UK"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="text-gray-300 hover:text-yellow-500 transition"
->
-  722 High Road, Leytonstone, London, UK
-</a>
-
-            </div>
-          </div>
+          {contactInfo.map(({ Icon, title, content, href }, i) => (
+            <motion.div
+              key={i}
+              className="flex items-start gap-5 group"
+              variants={itemVariants}
+              tabIndex={0}
+              role="region"
+              aria-label={title}
+            >
+              <Icon className="text-yellow-500 w-7 h-7 mt-1 group-hover:animate-pulse transition-transform duration-300" />
+              <div>
+                <h3 className="text-xl sm:text-2xl font-semibold mb-1">{title}</h3>
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-yellow-400 transition-colors text-base sm:text-lg break-words"
+                >
+                  {content}
+                </a>
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
 
         {/* Contact Form */}
         <motion.form
-          className="bg-white/5 backdrop-blur-md p-10 rounded-2xl shadow-lg space-y-6 border border-yellow-500/10"
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
-          viewport={{ once: true }}
-          onSubmit={(e) => {
-            e.preventDefault();
-            alert("Message submitted! (Add real functionality here)");
-          }}
+          className="bg-white/10 backdrop-blur-md p-8 rounded-3xl shadow-2xl border border-yellow-500/20 hover:ring-2 hover:ring-yellow-400/40 transition duration-300"
+          variants={formVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.4 }}
+          onSubmit={handleSubmit}
+          aria-label="Contact form"
         >
-          <div>
-            <label htmlFor="name" className="block mb-2 text-yellow-500 font-medium">
-              Name
-            </label>
-            <input
-              id="name"
-              type="text"
-              name="name"
-              required
-              className="w-full p-3 rounded-md bg-gray-800 text-white border border-gray-600 focus:outline-none focus:border-yellow-500"
-              placeholder="Your Name"
-            />
-          </div>
-          <div>
-            <label htmlFor="email" className="block mb-2 text-yellow-500 font-medium">
-              Email
-            </label>
-            <input
-              id="email"
-              type="email"
-              name="email"
-              required
-              className="w-full p-3 rounded-md bg-gray-800 text-white border border-gray-600 focus:outline-none focus:border-yellow-500"
-              placeholder="you@example.com"
-            />
-          </div>
-          <div>
-            <label htmlFor="message" className="block mb-2 text-yellow-500 font-medium">
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              rows="5"
-              required
-              className="w-full p-3 rounded-md bg-gray-800 text-white border border-gray-600 focus:outline-none focus:border-yellow-500"
-              placeholder="Write your message here..."
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full py-3 rounded-md bg-yellow-500 text-black font-bold hover:bg-yellow-600 transition duration-300"
-          >
-            Send Message
-          </button>
+          {submitted ? (
+            <motion.p
+              className="text-green-400 text-lg text-center font-semibold"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              Thank you! Your message has been submitted.
+            </motion.p>
+          ) : (
+            <>
+              {["Name", "Email", "Message"].map((label, idx) => {
+                const id = label.toLowerCase();
+                const isTextarea = label === "Message";
+
+                return (
+                  <div key={idx} className="mb-6 last:mb-0">
+                    <label
+                      htmlFor={id}
+                      className="block mb-2 text-yellow-400 font-medium text-sm sm:text-base"
+                    >
+                      {label}
+                    </label>
+                    {isTextarea ? (
+                      <textarea
+                        id={id}
+                        name={id}
+                        rows="5"
+                        required
+                        placeholder="Write your message here..."
+                        className="w-full p-4 rounded-lg bg-zinc-900 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 placeholder-gray-400 text-sm sm:text-base resize-none transition"
+                      />
+                    ) : (
+                      <input
+                        id={id}
+                        type={id === "email" ? "email" : "text"}
+                        name={id}
+                        required
+                        placeholder={`Your ${label}`}
+                        className="w-full p-4 rounded-lg bg-zinc-900 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-500 placeholder-gray-400 text-sm sm:text-base transition"
+                      />
+                    )}
+                  </div>
+                );
+              })}
+
+              <button
+                type="submit"
+                className="w-full py-3 rounded-lg bg-gradient-to-r from-yellow-400 to-red-500 hover:from-yellow-500 hover:to-red-600 text-black font-bold text-base sm:text-lg shadow-lg hover:scale-105 focus:outline-none focus:ring-4 focus:ring-yellow-400 transition-transform duration-300"
+                aria-label="Send message"
+              >
+                Send Message
+              </button>
+            </>
+          )}
         </motion.form>
       </div>
-    </section>
+    </main>
   );
 };
 

@@ -8,9 +8,13 @@ import ContactPage from "./components/pages/ContactPage";
 import Loader from "./components/common/Loader";
 import ScrollToTop from "./components/common/ScrollToTop";
 import AntiCopy from './components/common/AntiCopy'
-import TermsCondition from "./components/terms/Terms-Condition";
-import PrivacyPolicy from "./components/privacy-policy/Privacy-Policy";  
-import Faq from './components/faq/Faq';
+import MenuPage from "./components/pages/MenuPage.jsx";
+import FaqPage from "./components/pages/FaqPage.jsx";
+import TermsPage from "./components/pages/TermsPage.jsx";
+import PrivacyPolicyPage from "./components/pages/PrivacyPage.jsx";
+import Login from "./components/secure/Login.jsx";
+import Admin from "./components/secure/Admin.jsx";
+
 
 
 
@@ -23,7 +27,7 @@ function App() {
   
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000); // 2 seconds
+    }, 3000); // 2 seconds
     return () => clearTimeout(timer);
   }, []);
 
@@ -38,11 +42,14 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="services" element={<ServicesPage />} />
           <Route path="about" element={<AboutPage />} />
+          <Route path="menu" element={<MenuPage />} />
           <Route path="contact" element={<ContactPage />} />
-         <Route path="terms-condition" element={<TermsCondition/>} />
+         <Route path="terms-condition" element={<TermsPage/>} />
           <Route path="*" element={<h1>404 Not Found</h1>} />
-          <Route path="privacy-policy" element={<PrivacyPolicy/>} />
-          <Route path="faq" element={<Faq/>}/>
+          <Route path="privacy-policy" element={<PrivacyPolicyPage/>} />
+          <Route path="faq" element={<FaqPage/>}/>
+          <Route path="login" element={<Login/>}/>
+          <Route path="admin" element={<Admin/>} />
 
         </Route>
       </Routes>
